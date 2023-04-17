@@ -680,53 +680,53 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         wrap_format.set_text_wrap()
         wrap_format.set_align('vcenter')
 
-        worksheet = goreport_xlsx.add_worksheet("Overview")
+        worksheet = goreport_xlsx.add_worksheet("Aperçu")
         col = 0
         row = 0
 
         worksheet.set_column(0, 10, 62)
 
-        worksheet.write(row, col, "Campaign Results For:", bold_format)
+        worksheet.write(row, col, "Résultats de la campagne pour:", bold_format)
         worksheet.write(row, col + 1, f"{self.cam_name}", wrap_format)
         row += 1
-        worksheet.write(row, col, "Status", bold_format)
+        worksheet.write(row, col, "Statut", bold_format)
         worksheet.write(row, col + 1, f"{self.cam_status}", wrap_format)
         row += 1
-        worksheet.write(row, col, "Created", bold_format)
+        worksheet.write(row, col, "Créée le", bold_format)
         worksheet.write(row, col + 1, f"{self.created_date}", wrap_format)
         row += 1
-        worksheet.write(row, col, "Started", bold_format)
+        worksheet.write(row, col, "Démarrée le", bold_format)
         worksheet.write(row, col + 1, f"{self.launch_date}", wrap_format)
         row += 1
         if self.cam_status == "Completed":
-            worksheet.write(row, col, "Completed", bold_format)
+            worksheet.write(row, col, "Completée le", bold_format)
             worksheet.write(row, col + 1, f"{self.completed_date}", wrap_format)
             row += 1
 
         worksheet.write(row, col, "")
         row += 1
 
-        worksheet.write(row, col, "Campaign Details", bold_format)
+        worksheet.write(row, col, "Détails de la campagne", bold_format)
         row += 1
-        worksheet.write(row, col, "From", bold_format)
+        worksheet.write(row, col, "De", bold_format)
         worksheet.write(row, col + 1, f"{self.cam_from_address}", wrap_format)
         row += 1
-        worksheet.write(row, col, "Subject", bold_format)
+        worksheet.write(row, col, "Sujet", bold_format)
         worksheet.write(row, col + 1, f"{self.cam_subject_line}", wrap_format)
         row += 1
         worksheet.write(row, col, "Phish URL", bold_format)
         worksheet.write(row, col + 1, f"{self.cam_url}", wrap_format)
         row += 1
-        worksheet.write(row, col, "Redirect URL", bold_format)
+        worksheet.write(row, col, "URL de redirection", bold_format)
         worksheet.write(row, col + 1, f"{self.cam_redirect_url}", wrap_format)
         row += 1
-        worksheet.write(row, col, "Attachment(s)", bold_format)
+        worksheet.write(row, col, "Pièces jointes", bold_format)
         worksheet.write(row, col + 1, f"{self.cam_template_attachments}", wrap_format)
         row += 1
-        worksheet.write(row, col, "Captured Passwords", bold_format)
+        worksheet.write(row, col, "Mots de passe capturés", bold_format)
         worksheet.write(row, col + 1, f"{self.cam_capturing_credentials}", wrap_format)
         row += 1
-        worksheet.write(row, col, "Stored Passwords", bold_format)
+        worksheet.write(row, col, "Mots de passe stockés", bold_format)
         worksheet.write(row, col + 1, f"{self.cam_capturing_passwords}", wrap_format)
         row += 1
 
