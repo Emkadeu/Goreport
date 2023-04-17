@@ -779,11 +779,11 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
 
         worksheet.set_column(0, 10, 20)
 
-        worksheet.write(row, col, "Summary of Events", bold_format)
+        worksheet.write(row, col, "Résumé des événements", bold_format)
         row += 1
 
         header_col = 0
-        headers = ["Email Address", "Open", "Click", "Creds", "Report", "OS", "Browser"]
+        headers = ["Email", "Ouvert", "Click", "Identifiants", "Reporté", "OS", "Navigateur", "Poste"]
         for header in headers:
             worksheet.write(row, header_col, header, header_format)
             header_col += 1
@@ -794,6 +794,7 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         ordered_results = sorted(self.campaign_results_summary, key=lambda k: k['email'])
         for target in ordered_results:
             worksheet.write(row, col, target['email'], wrap_format)
+            worksheet.write(row, col + 7, target['position'], wrap_format)
             if target['opened']:
                 worksheet.write_boolean(row, col + 1, target['opened'], true_format)
             else:
@@ -1138,7 +1139,7 @@ Individuals Who Submitted: {self.total_unique_submitted}
         d.add_paragraph("The following table summarizes who opened and clicked on emails sent in this campaign.")
 
         # Create a table to hold the event summary results
-        table = d.add_table(rows=len(self.campaign_results_summary) + 1, cols=7, style="GoReport")
+        table = d.add_table(rows=len(self.campaign_results_summary) + 1, cols=8, style="GoReport")
 
         header0 = table.cell(0, 0)
         header0.text = ""
@@ -1167,6 +1168,11 @@ Individuals Who Submitted: {self.total_unique_submitted}
         header6 = table.cell(0, 6)
         header6.text = ""
         header6.paragraphs[0].add_run("Browser", "Cell Text").bold = True
+
+        header7 = table.cell(0, 7)
+        header7.text = ""
+        header7.paragraphs[0].add_run("Poste", "Cell Text").bold = True
+
 
         # Sort campaign summary by each dict's email entry and then create results table
         target_counter = 0
@@ -1217,6 +1223,10 @@ Individuals Who Submitted: {self.total_unique_submitted}
                 temp_cell.text = "N/A"
                 temp_cell = table.cell(counter, 6)
                 temp_cell.text = "N/A"
+            
+            position_cell = table.cell(counter, 7)
+            position_cell.text = f"{target['position']}"
+            
             counter += 1
             target_counter += 1
             print(f"[+] Created table entry for {target_counter} of {self.total_targets}.")
