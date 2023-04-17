@@ -734,46 +734,46 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         row += 1
 
         # Write a high level summary for stats
-        worksheet.write(row, col, "High Level Results", bold_format)
+        worksheet.write(row, col, "Resultats consolidés", bold_format)
         row += 1
-        worksheet.write(row, col, "Total Targets", bold_format)
+        worksheet.write(row, col, "Total des cibles", bold_format)
         worksheet.write(row, col + 1, self.total_targets, num_format)
         row += 1
 
-        worksheet.write(row, col, "The following totals indicate how many events of each type Gophish recorded:", wrap_format)
+        worksheet.write(row, col, "Les totaux suivants indiquent combien d'événements de chaque type Gophish a enregistré:", wrap_format)
         row += 1
-        worksheet.write(row, col, "Total Opened Events", bold_format)
+        worksheet.write(row, col, "Total de mails ouverts", bold_format)
         worksheet.write_number(row, col + 1, self.total_opened, num_format)
         row += 1
-        worksheet.write(row, col, "Total Clicked Events", bold_format)
+        worksheet.write(row, col, "Total de mails cliqués", bold_format)
         worksheet.write_number(row, col + 1, self.total_clicked, num_format)
         row += 1
-        worksheet.write(row, col, "Total Submitted Data Events", bold_format)
+        worksheet.write(row, col, "Total de données envoyées", bold_format)
         worksheet.write(row, col + 1, "", wrap_format)
         row += 1
-        worksheet.write(row, col, "Total Report Events", bold_format)
+        worksheet.write(row, col, "Total de mail signalés", bold_format)
         worksheet.write_number(row, col + 1, self.total_reported, num_format)
         row += 1
 
-        worksheet.write(row, col, "The following totals indicate how many targets participated in each event type:", wrap_format)
+        worksheet.write(row, col, "Les totaux suivants indiquent combien de cibles ont participées à chaque type d'événement:", wrap_format)
         row += 1
-        worksheet.write(row, col, "Individuals Who Opened", bold_format)
+        worksheet.write(row, col, "Individus qui ont ouvert le mail", bold_format)
         worksheet.write_number(row, col + 1, self.total_unique_opened, num_format)
         row += 1
-        worksheet.write(row, col, "Individuals Who Clicked", bold_format)
+        worksheet.write(row, col, "Individus qui ont cliqué", bold_format)
         worksheet.write_number(row, col + 1, self.total_unique_clicked, num_format)
         row += 1
-        worksheet.write(row, col, "Individuals Who Submitted Data", bold_format)
+        worksheet.write(row, col, "Individus qui ont envoyé des données", bold_format)
         worksheet.write_number(row, col + 1, self.total_unique_submitted, num_format)
         row += 1
-        worksheet.write(row, col, "Individuals Who Reported", bold_format)
+        worksheet.write(row, col, "Individus qui ont signalé le mail", bold_format)
         worksheet.write_number(row, col + 1, self.total_unique_reported, num_format)
         row += 1
 
         worksheet.write(row, col, "")
         row += 1
 
-        worksheet = goreport_xlsx.add_worksheet("Summary")
+        worksheet = goreport_xlsx.add_worksheet("Résumé")
         row = 0
         col = 0
 
@@ -783,7 +783,7 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         row += 1
 
         header_col = 0
-        headers = ["Email", "Ouvert", "Click", "Identifiants", "Reporté", "OS", "Navigateur", "Poste"]
+        headers = ["Email", "Ouvert", "Cliqué", "Identifiants", "Reporté", "OS", "Navigateur", "Poste"]
         for header in headers:
             worksheet.write(row, header_col, header, header_format)
             header_col += 1
@@ -831,13 +831,13 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         print("[+] Detailed results analysis is next and will take some time if you had a lot of targets...")
         # End of the event summary and beginning of the detailed results
 
-        worksheet = goreport_xlsx.add_worksheet("Event Details")
+        worksheet = goreport_xlsx.add_worksheet("Details des événements")
         row = 0
         col = 0
 
         worksheet.set_column(0, 10, 40)
 
-        worksheet.write(row, col, "Detailed Analysis", bold_format)
+        worksheet.write(row, col, "Analyse détaillée", bold_format)
         row += 1
 
         target_counter = 0
