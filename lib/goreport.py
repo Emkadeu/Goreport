@@ -1106,60 +1106,60 @@ De: {self.cam_from_address}
 Sujet: {self.cam_subject_line}
 URL de phishing: {self.cam_url}
 URL de redirection: {self.cam_redirect_url}
-Attachment(s): {self.cam_template_attachments}
-Captured Credentials: {self.cam_capturing_credentials}
-Stored Passwords: {self.cam_capturing_passwords}
+Pièces jointes: {self.cam_template_attachments}
+Mots de passe capturés: {self.cam_capturing_credentials}
+Mots de passe stockés: {self.cam_capturing_passwords}
 
 """)
 
         # Write a high level summary for stats
-        run = p.add_run("High Level Results")
+        run = p.add_run("Resultats détaillés")
         run.bold = True
         p.add_run(f"""
-Total Targets: {self.total_targets}
+Total des cibles: {self.total_targets}
 
-The following totals indicate how many events of each type Gophish recorded:
-Total Open Events: {self.total_opened}
-Total Click Events: {self.total_clicked}
-Total Report Events: {self.total_reported}
-Total Submitted Data Events: {self.total_submitted}
+Les totaux ci-dessous indiquent le nombre d'événements de chaque type que Gophish a enregistré:
+Total des ouvertures de mails: {self.total_opened}
+Total de liens cliqués: {self.total_clicked}
+Total de mails signalés: {self.total_reported}
+Total de données capturées: {self.total_submitted}
 
-The following totals indicate how many targets participated in each event type:
-Individuals Who Opened: {self.total_unique_opened}
-Individuals Who Clicked: {self.total_unique_clicked}
-Individuals Who Reported: {self.total_unique_reported}
-Individuals Who Submitted: {self.total_unique_submitted}
+Les totaux ci-dessous indiquent combien de cibles ont participées à chaque type d'événements:
+Personnes ayant ouvertes le mail: {self.total_unique_opened}
+Personnes ayant cliqué sur le lien: {self.total_unique_clicked}
+Personnes ayant signalé le mail: {self.total_unique_reported}
+Personnes ayant soumis des informations: {self.total_unique_submitted}
 
 """)
         d.add_page_break()
 
         print("[+] Finished writing high level summary...")
         # End of the campaign summary and beginning of the event summary
-        d.add_heading("Summary of Events", 1)
-        d.add_paragraph("The following table summarizes who opened and clicked on emails sent in this campaign.")
+        d.add_heading("Résumé des événements", 1)
+        d.add_paragraph("Le tableau suivant récapitule qui a ouvert et cliqué sur les e-mails envoyés dans cette campagne.")
 
         # Create a table to hold the event summary results
         table = d.add_table(rows=len(self.campaign_results_summary) + 1, cols=8, style="GoReport")
 
         header0 = table.cell(0, 0)
         header0.text = ""
-        header0.paragraphs[0].add_run("Email Address", "Cell Text").bold = True
+        header0.paragraphs[0].add_run("Adresse Email", "Cell Text").bold = True
 
         header1 = table.cell(0, 1)
         header1.text = ""
-        header1.paragraphs[0].add_run("Open", "Cell Text").bold = True
+        header1.paragraphs[0].add_run("Ouvert", "Cell Text").bold = True
 
         header2 = table.cell(0, 2)
         header2.text = ""
-        header2.paragraphs[0].add_run("Click", "Cell Text").bold = True
+        header2.paragraphs[0].add_run("Cliqué", "Cell Text").bold = True
 
         header3 = table.cell(0, 3)
         header3.text = ""
-        header3.paragraphs[0].add_run("Data", "Cell Text").bold = True
+        header3.paragraphs[0].add_run("Données", "Cell Text").bold = True
 
         header4 = table.cell(0, 4)
         header4.text = ""
-        header4.paragraphs[0].add_run("Report", "Cell Text").bold = True
+        header4.paragraphs[0].add_run("Signalé", "Cell Text").bold = True
 
         header5 = table.cell(0, 5)
         header5.text = ""
@@ -1167,7 +1167,7 @@ Individuals Who Submitted: {self.total_unique_submitted}
 
         header6 = table.cell(0, 6)
         header6.text = ""
-        header6.paragraphs[0].add_run("Browser", "Cell Text").bold = True
+        header6.paragraphs[0].add_run("Navigateur", "Cell Text").bold = True
 
         header7 = table.cell(0, 7)
         header7.text = ""
@@ -1236,7 +1236,7 @@ Individuals Who Submitted: {self.total_unique_submitted}
         # End of the event summary and beginning of the detailed results
         print("[+] Finished writing events summary...")
         print("[+] Detailed results analysis is next and may take some time if you had a lot of targets...")
-        d.add_heading("Detailed Findings", 1)
+        d.add_heading("Details des événements", 1)
         target_counter = 0
         for target in self.results:
             # Only create a Detailed Analysis section for targets with clicks
@@ -1263,7 +1263,7 @@ Individuals Who Submitted: {self.total_unique_submitted}
                         sent_date = temp[0]
                         sent_time = temp[1].split('.')[0]
                         # Record the email sent date and time in the run created earlier
-                        email_sent_run.text = f"Email sent on {sent_date} at {sent_time}"
+                        email_sent_run.text = f"Email envoyé le {sent_date} à {sent_time}"
 
                     if event.message == "Email Opened" and event.email == target.email:
                         if opened_counter == 1:
@@ -1279,7 +1279,7 @@ Individuals Who Submitted: {self.total_unique_submitted}
 
                             header1 = opened_table.cell(0, 0)
                             header1.text = ""
-                            header1.paragraphs[0].add_run("Time", "Cell Text").bold = True
+                            header1.paragraphs[0].add_run("Date", "Cell Text").bold = True
 
                         # Begin by adding a row to the table and inserting timestamp
                         opened_table.add_row()
@@ -1293,7 +1293,7 @@ Individuals Who Submitted: {self.total_unique_submitted}
                             # Create the Clicked Link table
                             p = d.add_paragraph()
                             p.style = d.styles['Normal']
-                            run = p.add_run("Email Link Clicked")
+                            run = p.add_run("Lien de l'email cliqué")
                             run.bold = True
 
                             clicked_table = d.add_table(rows=1, cols=5, style="GoReport")
@@ -1302,23 +1302,23 @@ Individuals Who Submitted: {self.total_unique_submitted}
 
                             header1 = clicked_table.cell(0, 0)
                             header1.text = ""
-                            header1.paragraphs[0].add_run("Time", "Cell Text").bold = True
+                            header1.paragraphs[0].add_run("Date", "Cell Text").bold = True
 
                             header2 = clicked_table.cell(0, 1)
                             header2.text = ""
-                            header2.paragraphs[0].add_run("IP", "Cell Text").bold = True
+                            header2.paragraphs[0].add_run("Adresse IP", "Cell Text").bold = True
 
                             header3 = clicked_table.cell(0, 2)
                             header3.text = ""
-                            header3.paragraphs[0].add_run("Location", "Cell Text").bold = True
+                            header3.paragraphs[0].add_run("Emplacement", "Cell Text").bold = True
 
                             header4 = clicked_table.cell(0, 3)
                             header4.text = ""
-                            header4.paragraphs[0].add_run("Browser", "Cell Text").bold = True
+                            header4.paragraphs[0].add_run("Navigateur", "Cell Text").bold = True
 
                             header5 = clicked_table.cell(0, 4)
                             header5.text = ""
-                            header5.paragraphs[0].add_run("Operating System",
+                            header5.paragraphs[0].add_run("OS",
                                                           "Cell Text").bold = True
 
                         clicked_table.add_row()
@@ -1355,7 +1355,7 @@ Individuals Who Submitted: {self.total_unique_submitted}
                             # Create the Submitted Data table
                             p = d.add_paragraph()
                             p.style = d.styles['Normal']
-                            run = p.add_run("Data Captured")
+                            run = p.add_run("Données capturées")
                             run.bold = True
 
                             submitted_table = d.add_table(rows=1, cols=6, style="GoReport")
@@ -1364,28 +1364,28 @@ Individuals Who Submitted: {self.total_unique_submitted}
 
                             header1 = submitted_table.cell(0, 0)
                             header1.text = ""
-                            header1.paragraphs[0].add_run("Time", "Cell Text").bold = True
+                            header1.paragraphs[0].add_run("Date", "Cell Text").bold = True
 
                             header2 = submitted_table.cell(0, 1)
                             header2.text = ""
-                            header2.paragraphs[0].add_run("IP", "Cell Text").bold = True
+                            header2.paragraphs[0].add_run("Adresse IP", "Cell Text").bold = True
 
                             header3 = submitted_table.cell(0, 2)
                             header3.text = ""
-                            header3.paragraphs[0].add_run("Location", "Cell Text").bold = True
+                            header3.paragraphs[0].add_run("Emplacement", "Cell Text").bold = True
 
                             header4 = submitted_table.cell(0, 3)
                             header4.text = ""
-                            header4.paragraphs[0].add_run("Browser", "Cell Text").bold = True
+                            header4.paragraphs[0].add_run("Navigateur", "Cell Text").bold = True
 
                             header5 = submitted_table.cell(0, 4)
                             header5.text = ""
-                            header5.paragraphs[0].add_run("Operating System",
+                            header5.paragraphs[0].add_run("OS",
                                                           "Cell Text").bold = True
 
                             header6 = submitted_table.cell(0, 5)
                             header6.text = ""
-                            header6.paragraphs[0].add_run("Data Captured",
+                            header6.paragraphs[0].add_run("Données capturées",
                                                           "Cell Text").bold = True
 
                         submitted_table.add_row()
@@ -1434,8 +1434,8 @@ Individuals Who Submitted: {self.total_unique_submitted}
 
         print("[+] Finished writing Detailed Analysis section...")
         # End of the detailed results and the beginning of browser, location, and OS stats
-        d.add_heading("Statistics", 1)
-        p = d.add_paragraph("The following table shows the browsers seen:")
+        d.add_heading("Statistiques", 1)
+        p = d.add_paragraph("Le tableau suivant récapitule les navigateurs détectés:")
         # Create browser table
         browser_table = d.add_table(rows=1, cols=2, style="GoReport")
         self._set_word_column_width(browser_table.columns[0], Cm(7.24))
@@ -1443,13 +1443,13 @@ Individuals Who Submitted: {self.total_unique_submitted}
 
         header1 = browser_table.cell(0, 0)
         header1.text = ""
-        header1.paragraphs[0].add_run("Browser", "Cell Text").bold = True
+        header1.paragraphs[0].add_run("Navigateur", "Cell Text").bold = True
 
         header2 = browser_table.cell(0, 1)
         header2.text = ""
-        header2.paragraphs[0].add_run("Seen", "Cell Text").bold = True
+        header2.paragraphs[0].add_run("Total", "Cell Text").bold = True
 
-        p = d.add_paragraph("\nThe following table shows the operating systems seen:")
+        p = d.add_paragraph("\nLe tableau suivant récapitule les OS détectés:")
 
         # Create OS table
         os_table = d.add_table(rows=1, cols=2, style="GoReport")
@@ -1458,13 +1458,13 @@ Individuals Who Submitted: {self.total_unique_submitted}
 
         header1 = os_table.cell(0, 0)
         header1.text = ""
-        header1.paragraphs[0].add_run("Operating System", "Cell Text").bold = True
+        header1.paragraphs[0].add_run("Système d'exploitation", "Cell Text").bold = True
 
         header2 = os_table.cell(0, 1)
         header2.text = ""
-        header2.paragraphs[0].add_run("Seen", "Cell Text").bold = True
+        header2.paragraphs[0].add_run("Total", "Cell Text").bold = True
 
-        p = d.add_paragraph("\nThe following table shows the locations seen:")
+        p = d.add_paragraph("\nLe tableau suivant récapitule les emplacements:")
 
         # Create geo IP table
         location_table = d.add_table(rows=1, cols=2, style="GoReport")
@@ -1473,13 +1473,13 @@ Individuals Who Submitted: {self.total_unique_submitted}
 
         header1 = location_table.cell(0, 0)
         header1.text = ""
-        header1.paragraphs[0].add_run("Location", "Cell Text").bold = True
+        header1.paragraphs[0].add_run("Emplacements", "Cell Text").bold = True
 
         header2 = location_table.cell(0, 1)
         header2.text = ""
-        header2.paragraphs[0].add_run("Visits", "Cell Text").bold = True
+        header2.paragraphs[0].add_run("Visites", "Cell Text").bold = True
 
-        p = d.add_paragraph("\nThe following table shows the IP addresses captured:")
+        p = d.add_paragraph("\nLe tableau suivant récapitule les adresse IP capturées:")
 
         # Create IP address table
         ip_add_table = d.add_table(rows=1, cols=2, style="GoReport")
@@ -1488,13 +1488,13 @@ Individuals Who Submitted: {self.total_unique_submitted}
 
         header1 = ip_add_table.cell(0, 0)
         header1.text = ""
-        header1.paragraphs[0].add_run("IP Address", "Cell Text").bold = True
+        header1.paragraphs[0].add_run("Adresse IP", "Cell Text").bold = True
 
         header2 = ip_add_table.cell(0, 1)
         header2.text = ""
-        header2.paragraphs[0].add_run("Seen", "Cell Text").bold = True
+        header2.paragraphs[0].add_run("Total", "Cell Text").bold = True
 
-        p = d.add_paragraph("\nThe following table shows the IP addresses matched with geolocation data:")
+        p = d.add_paragraph("\nLe tableau suivant montre les adresses IP en corrélation avec leur emplacement géographique:")
 
         # Create IP address and location table
         ip_loc_table = d.add_table(rows=1, cols=2, style="GoReport")
@@ -1503,11 +1503,11 @@ Individuals Who Submitted: {self.total_unique_submitted}
 
         header1 = ip_loc_table.cell(0, 0)
         header1.text = ""
-        header1.paragraphs[0].add_run("IP Address", "Cell Text").bold = True
+        header1.paragraphs[0].add_run("Adresse IP", "Cell Text").bold = True
 
         header2 = ip_loc_table.cell(0, 1)
         header2.text = ""
-        header2.paragraphs[0].add_run("Location", "Cell Text").bold = True
+        header2.paragraphs[0].add_run("Emplacement", "Cell Text").bold = True
 
         # Counters are used here again to track rows
         counter = 1
