@@ -1085,14 +1085,14 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         # Runs are basically "runs" of text and must be aligned like we want
         # them aligned in the report -- thus they are pushed left
         if self.cam_status == "Completed":
-            completed_status = f"Terminée le:\t{self.completed_date.split('T')[1].split('.')[0]} on {self.completed_date.split('T')[0]}"
+            completed_status = f"Terminée le:\t{self.completed_date.split('T')[1].split('.')[0]} à {self.completed_date.split('T')[0]}"
         else:
             completed_status = "Toujours en cours"
         p.add_run(f"""
-Status: {self.cam_status}
-Created: {self.created_date.split('T')[1].split('.')[0]} on {self.created_date.split('T')[0]}
-Started: {self.launch_date.split('T')[1].split('.')[0]} on {self.launch_date.split('T')[0]}
-Completed: {completed_status}
+Statut: {self.cam_status}
+Créée le: {self.created_date.split('T')[1].split('.')[0]} on {self.created_date.split('T')[0]}
+Démarrée le: {self.launch_date.split('T')[1].split('.')[0]} on {self.launch_date.split('T')[0]}
+Terminée: {completed_status}
 
 """)
         if self.cam_status == "Completed":
