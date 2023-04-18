@@ -618,13 +618,13 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
     def _build_output_xlsx_file_name(self):
         """Create the xlsx report name."""
         safe_name = "".join([c for c in self.cam_name if c.isalpha() or c.isdigit() or c == " "]).rstrip()
-        xlsx_report = f"Gophish Results for {safe_name}.xlsx"
+        xlsx_report = f"Resultats pour {safe_name}.xlsx"
         return xlsx_report
 
     def _build_output_word_file_name(self):
         """Create the docx report name."""
         safe_name = "".join([c for c in self.cam_name if c.isalpha() or c.isdigit() or c == " "]).rstrip()
-        word_report = f"Gophish Results for {safe_name}.docx"
+        word_report = f"Resultats pour {safe_name}.docx"
         return word_report
 
     def _set_word_column_width(self, column, width):
@@ -859,21 +859,21 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
                         sent_date = temp[0]
                         sent_time = temp[1].split('.')[0]
                         # Record the email sent date and time in the report
-                        worksheet.write(row, col, f"Sent on {sent_date.replace(',', '')} at {sent_time}", wrap_format)
+                        worksheet.write(row, col, f"Envoyé le {sent_date.replace(',', '')} a {sent_time}", wrap_format)
                         row += 1
 
                     if event.message == "Email Opened" and event.email == target.email:
                         # Record the email preview date and time in the report
                         temp = event.time.split('T')
-                        worksheet.write(row, col, f"Email Preview at {temp[0]} {temp[1].split('.')[0]}", wrap_format)
+                        worksheet.write(row, col, f"Mail ouvert a {temp[0]} {temp[1].split('.')[0]}", wrap_format)
                         row += 1
 
                     if event.message == "Clicked Link" and event.email == target.email:
-                        worksheet.write(row, col, "Email Link Clicked", bold_format)
+                        worksheet.write(row, col, "Lien du mail cliqué", bold_format)
                         row += 1
 
                         header_col = 0
-                        headers = ["Time", "IP", "Location", "Browser", "Operating System"]
+                        headers = ["Heure", "IP", "Emplacement", "Navigateur", "Système d'exploitation"]
                         for header in headers:
                             worksheet.write(row, header_col, header, header_format)
                             header_col += 1
@@ -909,11 +909,11 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
                         #   1. There is no expectation of a Submit event without a Clicked Link event
                         #   2. Assuming that, the following process does NOT flag IP mismatches
                         #      or add to the list of seen locations, OSs, IPs, or browsers.
-                        worksheet.write(row, col, "Submitted Data Captured", bold_format)
+                        worksheet.write(row, col, "Informations capturées", bold_format)
                         row += 1
 
                         header_col = 0
-                        headers = ["Time", "IP", "Location", "Browser", "Operating System", "Data Captured"]
+                        headers = ["Heure", "IP", "Emplacement", "Navigateur", "Système d'exploitation", "Données capturées"]
                         for header in headers:
                             worksheet.write(row, header_col, header, header_format)
                             header_col += 1
@@ -958,17 +958,17 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
 
         print("[+] Finished writing detailed analysis...")
 
-        worksheet = goreport_xlsx.add_worksheet("Stats")
+        worksheet = goreport_xlsx.add_worksheet("Statistiques")
         row = 0
         col = 0
 
         worksheet.set_column(0, 10, 35)
 
-        worksheet.write(row, col, "Recorded Browsers Based on User-Agents:", bold_format)
+        worksheet.write(row, col, "Analyse des navigateurs basé sur les User-Agents:", bold_format)
         row += 1
 
         header_col = 0
-        headers = ["Browser", "Seen"]
+        headers = ["Navigateur", "Total"]
         for header in headers:
             worksheet.write(row, header_col, header, header_format)
             header_col += 1
@@ -982,10 +982,10 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         worksheet.write(row, col, "")
         row += 1
 
-        worksheet.write(row, col, "Record OS From Browser User-Agents:", bold_format)
+        worksheet.write(row, col, "Analyse des OS basé sur les User-Agents:", bold_format)
         row += 1
         header_col = 0
-        headers = ["Operating System", "Seen"]
+        headers = ["Système d'exploitation", "Total"]
         for header in headers:
             worksheet.write(row, header_col, header, header_format)
             header_col += 1
@@ -999,10 +999,10 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         worksheet.write(row, col, "")
         row += 1
 
-        worksheet.write(row, col, "Recorded Locations from IPs:", bold_format)
+        worksheet.write(row, col, "Analyse des emplacements basé sur les IPs:", bold_format)
         row += 1
         header_col = 0
-        headers = ["Locations", "Seen"]
+        headers = ["Emplacement", "Total"]
         for header in headers:
             worksheet.write(row, header_col, header, header_format)
             header_col += 1
@@ -1016,10 +1016,10 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         worksheet.write(row, col, "")
         row += 1
 
-        worksheet.write(row, col, "Recorded IPs:", bold_format)
+        worksheet.write(row, col, "Adresses IP enregistrées:", bold_format)
         row += 1
         header_col = 0
-        headers = ["IP Address", "Seen"]
+        headers = ["Addresse IP", "Total"]
         for header in headers:
             worksheet.write(row, header_col, header, header_format)
             header_col += 1
@@ -1030,10 +1030,10 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
             worksheet.write_number(row, col + 1, value, num_format)
             row += 1
 
-        worksheet.write(row, col, "Recorded IPs and Locations:", bold_format)
+        worksheet.write(row, col, "Adresses IP et emplacements enregistrés:", bold_format)
         row += 1
         header_col = 0
-        headers = ["IP Address", "Location"]
+        headers = ["Addresse IP", "Emplacement"]
         for header in headers:
             worksheet.write(row, header_col, header, header_format)
             header_col += 1
@@ -1056,7 +1056,7 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         _ = styles.add_style("Cell Text", WD_STYLE_TYPE.CHARACTER)
         cell_text = d.styles["Cell Text"]
         cell_text_font = cell_text.font
-        cell_text_font.name = "Calibri"
+        cell_text_font.name = "Arial"
         cell_text_font.size = Pt(12)
         cell_text_font.bold = True
         cell_text_font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
@@ -1064,7 +1064,7 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         _ = styles.add_style("Cell Text Hit", WD_STYLE_TYPE.CHARACTER)
         cell_text_hit = d.styles["Cell Text Hit"]
         cell_text_hit_font = cell_text_hit.font
-        cell_text_hit_font.name = "Calibri"
+        cell_text_hit_font.name = "Arial"
         cell_text_hit_font.size = Pt(12)
         cell_text_hit_font.bold = True
         cell_text_hit_font.color.rgb = RGBColor(0x00, 0x96, 0x00)
@@ -1072,22 +1072,22 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         _ = styles.add_style("Cell Text Miss", WD_STYLE_TYPE.CHARACTER)
         cell_text_miss = d.styles["Cell Text Miss"]
         cell_text_miss_font = cell_text_miss.font
-        cell_text_miss_font.name = "Calibri"
+        cell_text_miss_font.name = "Arial"
         cell_text_miss_font.size = Pt(12)
         cell_text_miss_font.bold = True
         cell_text_miss_font.color.rgb = RGBColor(0xFF, 0x00, 0x00)
 
         # Write a campaign summary at the top of the report
-        d.add_heading("Executive Summary", 1)
+        d.add_heading("Résumé", 1)
         p = d.add_paragraph()
-        run = p.add_run(f"Campaign Results For: {self.cam_name}")
+        run = p.add_run(f"Resultats de la campagne pour: {self.cam_name}")
         run.bold = True
         # Runs are basically "runs" of text and must be aligned like we want
         # them aligned in the report -- thus they are pushed left
         if self.cam_status == "Completed":
-            completed_status = f"Completed:\t{self.completed_date.split('T')[1].split('.')[0]} on {self.completed_date.split('T')[0]}"
+            completed_status = f"Terminée le:\t{self.completed_date.split('T')[1].split('.')[0]} on {self.completed_date.split('T')[0]}"
         else:
-            completed_status = "Still Active"
+            completed_status = "Toujours en cours"
         p.add_run(f"""
 Status: {self.cam_status}
 Created: {self.created_date.split('T')[1].split('.')[0]} on {self.created_date.split('T')[0]}
@@ -1099,13 +1099,13 @@ Completed: {completed_status}
             print()
 
         # Write the campaign details -- email details and template settings
-        run = p.add_run("Campaign Details")
+        run = p.add_run("Details de la campagne")
         run.bold = True
         p.add_run(f"""
-From: {self.cam_from_address}
-Subject: {self.cam_subject_line}
-Phish URL: {self.cam_url}
-Redirect URL: {self.cam_redirect_url}
+De: {self.cam_from_address}
+Sujet: {self.cam_subject_line}
+URL de phishing: {self.cam_url}
+URL de redirection: {self.cam_redirect_url}
 Attachment(s): {self.cam_template_attachments}
 Captured Credentials: {self.cam_capturing_credentials}
 Stored Passwords: {self.cam_capturing_passwords}
