@@ -1,5 +1,6 @@
 # Goreport v3.0, a Gophish Reporting Tool
 
+Traduction des rapports en Français
 This script accepts your Gophish campaign ID(s) as a parameter and then collects the campaign results to present the statistics and perform user-agent parsing and geolocation lookups for IP addresses. Goreport generates lists of IP addresses, operating systems, browser types and versions, and locations with counts for the number of times each one was seen throughout the campaign.
 
 A note on statistics: Goreport will report the total number of events and the number of email recipients that participated in each event. In other words, Goreport will show how many times Gophish recorded a "Clicked Link" event and how many recipients clicked a link. These are very different numbers. A campaign sent to 10 people could have 9 Clicked Link events when only 3 recipients clicked a link. Knowing that recipients clicked a link or submitted data more than once is valuable information, but make sure you keep the numbers straight.
