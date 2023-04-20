@@ -1080,7 +1080,7 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         # Write a campaign summary at the top of the report
         d.add_heading("Résumé", 1)
         p = d.add_paragraph()
-        run = p.add_run(f"Resultats de la campagne pour: {self.cam_name}")
+        run = p.add_run(f"Résultats de la campagne pour: {self.cam_name}")
         run.bold = True
         # Runs are basically "runs" of text and must be aligned like we want
         # them aligned in the report -- thus they are pushed left
@@ -1099,7 +1099,7 @@ Terminée: {completed_status}
             print()
 
         # Write the campaign details -- email details and template settings
-        run = p.add_run("Details de la campagne")
+        run = p.add_run("Détails de la campagne")
         run.bold = True
         p.add_run(f"""
 De: {self.cam_from_address}
@@ -1113,7 +1113,7 @@ Mots de passe stockés: {self.cam_capturing_passwords}
 """)
 
         # Write a high level summary for stats
-        run = p.add_run("Resultats détaillés")
+        run = p.add_run("Résultats détaillés")
         run.bold = True
         p.add_run(f"""
 Total des cibles: {self.total_targets}
