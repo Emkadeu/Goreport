@@ -1057,7 +1057,7 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         cell_text = d.styles["Cell Text"]
         cell_text_font = cell_text.font
         cell_text_font.name = "Arial"
-        cell_text_font.size = Pt(12)
+        cell_text_font.size = Pt(10)
         cell_text_font.bold = True
         cell_text_font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
 
@@ -1065,7 +1065,7 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         cell_text_hit = d.styles["Cell Text Hit"]
         cell_text_hit_font = cell_text_hit.font
         cell_text_hit_font.name = "Arial"
-        cell_text_hit_font.size = Pt(12)
+        cell_text_hit_font.size = Pt(10)
         cell_text_hit_font.bold = True
         cell_text_hit_font.color.rgb = RGBColor(0x00, 0x96, 0x00)
 
@@ -1073,7 +1073,7 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
         cell_text_miss = d.styles["Cell Text Miss"]
         cell_text_miss_font = cell_text_miss.font
         cell_text_miss_font.name = "Arial"
-        cell_text_miss_font.size = Pt(12)
+        cell_text_miss_font.size = Pt(10)
         cell_text_miss_font.bold = True
         cell_text_miss_font.color.rgb = RGBColor(0xFF, 0x00, 0x00)
 
