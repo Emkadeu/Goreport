@@ -1270,7 +1270,7 @@ Personnes ayant soumis des informations: {self.total_unique_submitted}
                             # Create the Email Opened/Previewed table
                             p = d.add_paragraph()
                             p.style = d.styles['Normal']
-                            run = p.add_run("Email Previews")
+                            run = p.add_run("Visualisation du mail")
                             run.bold = True
 
                             opened_table = d.add_table(rows=1, cols=1, style="GoReport")
